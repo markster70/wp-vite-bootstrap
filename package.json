@@ -1,0 +1,22 @@
+{
+  "name": "vite-bootstrap-wordpress",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "sass": "^1.54.0",
+    "terser": "^5.14.2",
+    "vite": "^3.0.3",
+    "vite-plugin-live-reload": "^2.1.0",
+    "vite-plugin-imagemin": "^0.6.1",
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "@splidejs/splide": "^4.0.7",
+    "bootstrap": "^5.2.0"
+  }
+}

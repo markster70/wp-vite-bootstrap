@@ -1,0 +1,58 @@
+// font sizes applied to the head of the document at various screen size to enable syncing of javascript UI behaviour and css breakpoints
+// do not remove below ths line
+
+// small screen
+head {
+  font-size: 10px;
+  display: none;
+}
+
+@include media-breakpoint-up(md) {
+  //midi screen
+  head {
+    font-size: 20px;
+    display: none;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  // large
+  head {
+    font-size: 30px;
+    display: none;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  // xtra-large
+  head {
+    font-size: 40px;
+    display: none;
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  // xtra-xtra-large
+  head {
+    font-size: 50px;
+    display: none;
+  }
+}
+
+.pos-r {
+  position: relative;
+}
+
+.op-0 {
+  opacity: 0;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

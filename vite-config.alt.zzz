@@ -1,0 +1,174 @@
+// View your website at your own local server
+// for example http://vite-php-setup.test
+
+// http://localhost:3000 is serving Vite on development
+// but accessing it directly will be empty
+
+// IMPORTANT image urls in CSS works fine
+// BUT you need to create a symlink on dev server to map this folder during dev:
+// ln -s {path_to_vite}/src/assets {path_to_public_html}/assets
+// on production everything will work just fine
+
+// FE BUILD VAR - THIS SETS WHETHER JUST FE ASSETS GET A LIVE RELOAD
+// IF YOU WANT TWIG HMR, SET TO FALSE
+// IF YOU WANT TWIG HMR, SET TO FALSE
+const IS_FE_BUILD = true;
+
+const feBuildPluginOpts = {
+    bePlugins : [liveReload([__dirname + '/**/*.php', __dirname + '/**/*.twig']), vue()],
+    fePlugins : [vue()]
+};
+
+
+
+import vue from '@vitejs/plugin-vue2';
+import liveReload from 'vite-plugin-live-reload';
+import { defineConfig, loadEnv } from 'vite';
+const { resolve } = require('path');
+
+const srcDir = resolve(__dirname + '/ui-dev/');
+const localDevPath = 'https://ariel.local';
+
+let scriptsTimestamp = Date.now();
+
+export default defineConfig(({ command, mode }) => {
+    const env = loadEnv(mode, process.cwd());
+    const envScssPath = env.VITE_CSS_VARS_PATH;
+
+    return {
+        //plugins:[liveReload([__dirname + '/**/*.php', __dirname + '/**/*.twig']), vue()],
+        plugins: IS_FE_BUILD ? feBuildPluginOpts.fePlugins : feBuildPluginOpts.bePlugins,
+        base: '/',
+        build: {
+            // output dir for production build
+            outDir: resolve(__dirname + '/ui'),
+            emptyOutDir: true,
+            cssCodeSplit: env.mode === 'development' ? false : undefined,
+            // have this turned off for now as the paths for dynamic imports causes 404'ing
+            modulePreload: false,
+            // emit manifest so PHP can find the hashed files
+            manifest: false,
+
+            // esbuild target
+            target: 'es2018',
+
+            // our entry
+            rollupOptions: {
+                input: {
+                    index: resolve(__dirname + '/ui-dev/scripts/index.js'),
+                    admin: resolve(__dirname + '/ui-dev/scripts/admin.js'),
+                    //'css/admin-style': resolve(__dirname +  '/ui-dev/sass/admin-styles.scss'),
+                },
+                // note doing work without the hashes here until we cna figure out how to ad dynamic hashes with wp-enqueue scripts
+                output: {
+                    //minifyInternalExports : false,
+                    entryFileNames: '[name].js',
+                    chunkFileNames: '[name][hash].js',
+                    assetFileNames: (assetInfo) => {
+                        let extType = assetInfo.name.split('.');
+                        let extSuffix = extType[extType.length - 1];
+                        return `assets/${extSuffix}/[name][extname]`;
+                    },
+                },
+
+                manualChunks: {
+                    'js/brunswick-utility-scripts-': [
+                        `${srcDir}/scripts/utility-scripts/canHover.js`,
+                        `${srcDir}/scripts/utility-scripts/domHelpers.js`,
+                        `${srcDir}/scripts/utility-scripts/prefersReducedMotion.js`,
+                        `${srcDir}/scripts/utility-scripts/resizeActions.js`,
+                    ],
+                    'css/fa-styles': [`${srcDir}/sass/fa-styles.scss`],
+                    'style-ltr': [`${srcDir}/sass/base-styles-ltr.scss`],
+                    'css/style-rtl': [`${srcDir}/sass/base-styles-rtl.scss`],
+                    'css/admin-styles-rtl': [`${srcDir}/sass/admin-styles-rtl.scss`],
+                    'css/admin-styles-ltr': [`${srcDir}/sass/admin-styles-ltr.scss`],
+                    'js/brunswick-gsap-': [
+                        `${srcDir}/scripts/third-party-components/gsap-imports.js`,
+                    ],
+                    'js/brunswick-bootstrap-': [
+                        `${srcDir}/scripts/third-party-components/bootstrap-imports.js`,
+                    ],
+                },
+            },
+
+            // minifying switch
+            minify: true,
+            write: true,
+        },
+
+        server: {
+            // required to load scripts from custom host
+            cors: true,
+
+            // we need a strict port to match on PHP side
+            // change freely, but update in your functions.php to match the same port
+            strictPort: true,
+            port: 3000,
+            // we use the server.opn config to open whichever local site we are running
+            open: localDevPath,
+            // serve over http
+            https: false,
+
+            // serve over httpS
+            // to generate localhost certificate follow the link:
+            // https://github.com/FiloSottile/mkcert - Windows, MacOS and Linux supported - Browsers Chrome, Chromium and Firefox (FF MacOS and Linux only)
+            // installation example on Windows 10:
+            // > choco install mkcert (this will install mkcert)
+            // > mkcert -install (global one time install)
+            // > mkcert localhost (in project folder files localhost-key.pem & localhost.pem will be created)
+            // uncomment below to enable https
+            //https: {
+            //  key: fs.readFileSync('localhost-key.pem'),
+            //  cert: fs.readFileSync('localhost.pem'),
+            //},
+
+            hmr: {
+                host: 'localhost',
+                protocol: 'ws',
+                //port: 443
+            },
+        },
+
+        // required for in-browser template compilation
+        // https://v3.vuejs.org/guide/installation.html#with-a-bundler
+        resolve: {
+            unsafeCache: true,
+            modules: [resolve(__dirname, '/node_modules')],
+            alias: [
+                // when adding/editing make sure to update jsconfig.json
+                // so VS Code picks up the paths in intellisense
+                { find: 'Global', replacement: '/views/partials/global' },
+                //Global: resolve(__dirname, 'views/partials/global'),
+                { find: 'Blocks', replacement: '/views/partials/block' },
+                //Blocks: resolve(__dirname, 'views/partials/block'),
+                { find: 'Contents', replacement: '/views/partials/content' },
+                //Contents: resolve(__dirname, '/views/partials/content'),
+                { find: 'Core', replacement: '/ui-dev/scripts/core' },
+                //Core: resolve(__dirname, '/ui-dev/scripts/core'),
+                { find: 'Admin', replacement: '/views/partials/admin' },
+                //Admin: resolve(__dirname, '/ui-dev/scripts/admin'),
+                { find: 'Singular', replacement: '/views/singular' },
+                //Singular: resolve(__dirname, 'views/singular'),
+                { find: 'Views', replacement: '/views' },
+                //Views: resolve(__dirname, 'views'),
+                { find: 'CssEnvVars', replacement: `/ui-dev/sass/environment/${envScssPath}` },
+                //'@@CssEnvVars' : resolve(__dirname, `/ui-dev/sass/environment/${envScssPath}`),
+                { find: '@js', replacement: '/ui-dev/scripts/' },
+                { find: 'vueApps', replacement: '/ui-dev/vue-applications' },
+                { find: '@faIcons', replacement: '/ui-dev/sass/core-project/fa-icons-subset/scss-partials' }
+            ],
+        },
+    };
+});
+
+
+
+Mark Price
+Front-End Developer
+MerchantCantos, 16 Lincoln's Inn Fields, London WC2A 3ED, UK
+www.merchantcantos.com
+Associated offices in Abu Dhabi, Beijing, Berlin, Brussels, Chicago, Dallas, Dubai, Frankfurt, Hong Kong, Johannesburg, Milan, Mumbai, Munich, New York, Paris, São Paulo, San Francisco, Shanghai, Singapore, Stockholm, Tokyo, Vienna and Washington, D.C.
+    For a little inspiration, read our latest quarterly update here
+
+For data handling queries please view our Privacy Policy or contact us at privacyenquiries@brunswickgroup.com with any inquires.

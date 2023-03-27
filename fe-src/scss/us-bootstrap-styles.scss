@@ -1,0 +1,65 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
+
+// NOTE THIS VARS PARTIAL IS A DYNAMIC IMPORT BASED ON ENVIRONMENT FOR RESOLVING PATHS LIKE BACKGROUND IMAGE PATHS
+//@import "CssEnvVars/env-variables";
+
+@import "scss-partials/abstracts/custom-scss-variables";
+@import "scss-partials/abstracts/custom-mixins";
+//@import "abstracts/bespoke-placeholders";
+
+//@import "abstracts/bespoke-scss-variables";
+
+@import "scss-partials/abstracts/bootstrap-variables-custom";
+// here is the bootstrap load for anything that we require
+// abstracts first
+
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/root";
+
+// then the basics that we need for build - this can be added to as we go
+
+// map merges need to happen early in the build, so the limited ones are included here
+
+//$theme-colors: map-merge($theme-colors, $custom-colours);
+//$grid-breakpoints : map_merge($grid-breakpoints, $custom-grid-breakpoints);
+
+// THIS IS A CUSTOM FILE IMPORTED HERE WITH CSS RESET 2022 - THIS IS DUE TO THE BS REBOOT BEING TOO OPINIONATED OVER HEADINGS
+@import "scss-partials/base/css-reset";
+
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/popover";
+
+
+// UNUSED BOOTSTRAP PARTIALS
+
+//@import "bootstrap/scss/reboot";
+//@import "bootstrap/scss/type";
+//@import"~bootstrap/scss/forms";
+//@import "~bootstrap/scss/buttons";
+//@import "bootstrap/scss/nav";
+//@import "bootstrap/scss/breadcrumb";
+//@import "bootstrap/scss/alert";
+//@import "bootstrap/scss/pagination";
+//@import "bootstrap/scss/card";
+//@import "bootstrap/scss/spinners";
+
+// END UNUSED PARTIALS
+
+// bespoke utility compilation
+
+// the bootstrap grid partial pulls in most of the essential utility classes nowadays, this has minor includes
+@import "scss-partials/modified-bootstrap-partials/utilities";
+@import "bootstrap/scss/utilities/api";
+
+@import "scss-partials/utilities/js-helpers";
+
+body {
+  background-color: aquamarine;
+}
