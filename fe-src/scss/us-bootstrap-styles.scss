@@ -52,6 +52,10 @@
 
 // END UNUSED PARTIALS
 
+// Custom Partials
+
+@import "scss-partials/base/typography";
+
 // bespoke utility compilation
 
 // the bootstrap grid partial pulls in most of the essential utility classes nowadays, this has minor includes
@@ -61,5 +65,5 @@
 @import "scss-partials/utilities/js-helpers";
 
 body {
-  background-color: aquamarine;
+  background-color: green;
 }

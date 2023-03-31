@@ -101,6 +101,7 @@ function usbootstrap_setup() {
 		)
 	);
 }
+
 add_action( 'after_setup_theme', 'usbootstrap_setup' );
 
 /**
@@ -135,20 +136,6 @@ function usbootstrap_widgets_init() {
 }
 add_action( 'widgets_init', 'usbootstrap_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-//function usbootstrap_scripts() {
-//	wp_enqueue_style( 'usbootstrap-style', get_stylesheet_uri(), array(), _S_VERSION );
-//	wp_style_add_data( 'usbootstrap-style', 'rtl', 'replace' );
-//
-//	wp_enqueue_script( 'usbootstrap-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-//
-//	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-//		wp_enqueue_script( 'comment-reply' );
-//	}
-//}
-//add_action( 'wp_enqueue_scripts', 'usbootstrap_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -175,6 +162,37 @@ require get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
+}
+
+add_filter( 'allowed_block_types_all', 'misha_allowed_block_types', 25, 2 );
+
+function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
+
+    return array(
+        'core/image',
+        'core/paragraph',
+        'core/heading',
+        'core/list',
+        'core/list-item',
+        'core/gallery',
+        'core/quote',
+        'core/html',
+        'core/buttons',
+        'core/button',
+        'core/columns',
+        'core/column',
+        'core/file',
+        'core/media-text',
+        'core/shortcode',
+        'core/separator',
+        'core/freeform'
+    );
+}
+
+add_action( 'admin_enqueue_scripts', 'load_admin_style' );
+
+function load_admin_style() {
+    wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/dist/assets/css/admin-styles.css', false, _S_VERSION );
 }
 
 // Vite / Script Setup

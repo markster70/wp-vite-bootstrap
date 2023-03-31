@@ -1,6 +1,7 @@
 console.log('here goes vite');
 
 import '../scss/us-bootstrap-styles.scss';
+import '../../admin-styles/custom-admin-styles.scss';
 
 // dependency imports
 

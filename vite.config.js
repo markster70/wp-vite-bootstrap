@@ -56,6 +56,8 @@ export default defineConfig(({ command, mode }) => {
                 },
 
                 manualChunks: {
+                    'css/admin-styles': ['admin-styles/custom-admin-styles.scss']
+                    //'css/admin-styles': ['admin-styles/custom-admin-styles.scss`]
                     // 'js/brunswick-utility-scripts-': [
                     //     `${srcDir}/scripts/utility-scripts/canHover.js`,
                     //     `${srcDir}/scripts/utility-scripts/domHelpers.js`,
@@ -65,7 +67,7 @@ export default defineConfig(({ command, mode }) => {
                     // 'css/fa-styles': [`${srcDir}/sass/fa-styles.scss`],
                     // 'style-ltr': [`${srcDir}/sass/base-styles-ltr.scss`],
                     // 'css/style-rtl': [`${srcDir}/sass/base-styles-rtl.scss`],
-                    // 'css/admin-styles-rtl': [`${srcDir}/sass/admin-styles-rtl.scss`],
+
                     // 'css/admin-styles-ltr': [`${srcDir}/sass/admin-styles-ltr.scss`],
                     // 'js/brunswick-gsap-': [
                     //     `${srcDir}/scripts/third-party-components/gsap-imports.js`,
