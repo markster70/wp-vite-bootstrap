@@ -185,7 +185,9 @@ function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
         'core/media-text',
         'core/shortcode',
         'core/separator',
-        'core/freeform'
+        'core/freeform',
+        'genesis-custom-blocks/social-block',
+        'core/tag-cloud'
     );
 }
 
