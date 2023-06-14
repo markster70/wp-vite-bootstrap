@@ -1,5 +1,7 @@
 === usbootstrap ===
 
+// read me file for original WORDPRESS THEME _underscores
+
 Contributors: automattic
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 

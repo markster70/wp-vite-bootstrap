@@ -1,0 +1,51 @@
+.visuallyhidden,
+.screenreader, .screen-reader-text, .sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 0.063em;
+  margin: -0.063em;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 0.063em;
+
+  /*
+   * Extends the .visuallyhidden & .screenreader classes to allow the element to be focusable
+   * when navigated to via the keyboard: h5bp.com/p
+   */
+  &.focusable:active,
+  &.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+    color: $white;
+    text-decoration: none;
+    padding: 10px;
+    outline: 2px dotted rgba(255,255,255, 0.5);
+  }
+
+  :focus {
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: $white;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    top: 5px;
+    width: auto;
+    z-index: 100000; /* Makes sure it appears above WP toolbar. */
+  }
+}
+
+.h-100 {
+  height: 100%;
+}

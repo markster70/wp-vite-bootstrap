@@ -1,4 +1,6 @@
 // NOTE - vars need to be required for each module
+// This function helps to determine whether the site is being used as small or large screen on resize
+// a class is added to the document element of 'is-small-screen' ( or not ) dependent on current screen size, tied into the breakpoints for the site
 
 import { uiStateObj } from '../siteVars';
 import { addClassN, removeClassN, debounce, currScreenSize } from './domHelpers';

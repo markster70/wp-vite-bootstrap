@@ -1,16 +1,12 @@
 @import "bootstrap/scss/functions";
-@import "bootstrap/scss/mixins";
-
-// NOTE THIS VARS PARTIAL IS A DYNAMIC IMPORT BASED ON ENVIRONMENT FOR RESOLVING PATHS LIKE BACKGROUND IMAGE PATHS
-//@import "CssEnvVars/env-variables";
 
 @import "scss-partials/abstracts/custom-scss-variables";
 @import "scss-partials/abstracts/custom-mixins";
-//@import "abstracts/bespoke-placeholders";
-
-//@import "abstracts/bespoke-scss-variables";
 
 @import "scss-partials/abstracts/bootstrap-variables-custom";
+
+@import "bootstrap/scss/mixins";
+
 // here is the bootstrap load for anything that we require
 // abstracts first
 
@@ -20,27 +16,25 @@
 
 // then the basics that we need for build - this can be added to as we go
 
-// map merges need to happen early in the build, so the limited ones are included here
+// map merges need to happen early in the build, examples below commented out
 
 //$theme-colors: map-merge($theme-colors, $custom-colours);
 //$grid-breakpoints : map_merge($grid-breakpoints, $custom-grid-breakpoints);
 
-// THIS IS A CUSTOM FILE IMPORTED HERE WITH CSS RESET 2022 - THIS IS DUE TO THE BS REBOOT BEING TOO OPINIONATED OVER HEADINGS
-@import "scss-partials/base/css-reset";
-
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
 @import "bootstrap/scss/images";
 @import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/transitions";
-@import "bootstrap/scss/dropdown";
-@import "bootstrap/scss/accordion";
 @import "bootstrap/scss/popover";
+@import "bootstrap/scss/offcanvas";
 
 
-// UNUSED BOOTSTRAP PARTIALS
+// UNUSED BOOTSTRAP PARTIALS - add as needed
 
-//@import "bootstrap/scss/reboot";
-//@import "bootstrap/scss/type";
+//@import "bootstrap/scss/dropdown";
+//@import "bootstrap/scss/accordion";
 //@import"~bootstrap/scss/forms";
 //@import "~bootstrap/scss/buttons";
 //@import "bootstrap/scss/nav";
@@ -52,8 +46,9 @@
 
 // END UNUSED PARTIALS
 
-// Custom Partials
 
+// Custom Partials
+@import "scss-partials/base/base";
 @import "scss-partials/base/typography";
 
 // bespoke utility compilation
@@ -62,8 +57,18 @@
 @import "scss-partials/modified-bootstrap-partials/utilities";
 @import "bootstrap/scss/utilities/api";
 
+// components
+
+@import "scss-partials/components/components-index";
+
+// custom blocks for site
+
+@import "scss-partials/blocks/blocks-index";
+
+// custom helpers to be used
+
+@import "scss-partials/utilities/custom-helpers";
 @import "scss-partials/utilities/js-helpers";
 
-body {
-  background-color: green;
-}
+
+

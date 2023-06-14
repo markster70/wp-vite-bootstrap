@@ -1,7 +1,7 @@
 console.log('here goes vite');
 
 import '../scss/us-bootstrap-styles.scss';
-import '../../admin-styles/custom-admin-styles.scss';
+import '../scss/custom-admin-styles.scss';
 
 // dependency imports
 
@@ -66,6 +66,7 @@ import {  uiStateObj } from './siteVars';
 // salient point is we are namespacing into an es6 object literal
 // and able to import whichever modules we need at any point
 // inclusive of selective Bootstrap Javascript Imports
+
 const siteUiObj = {};
 
 siteUiObj.start = {
