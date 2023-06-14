@@ -1,10 +1,10 @@
 ## Wordpress / Bootstrap starter theme with Vite as Build tool
 
-A starter theme, based on underscores from Automattic, that utlitises Bootstrap 5x, with Vite as the build tool
+A starter theme, based on underscores from Automattic, that utilises Bootstrap 5x, with Vite as the build tool
 
 Vite is injected into the WP site for HMR and build facilities. 
 ### See vite-inc.php for details on how that is included
-##### ALSO SEE LINE 201 OF FUNCTIONS PHP FOR THE SWITCH BETWEEN DEV AND PRODUCTION
+### Also, update the $_local_site_url var in local_site_variable.php to your dev server url
 
 Source for FA assets is in the 'fe-src' directory - we compile out to dist
 

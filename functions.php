@@ -20,6 +20,8 @@ if ( ! defined( '_S_VERSION' ) ) {
  * as indicating support for post thumbnails.
  */
 
+include_once('local_site_variable.php');
+
 function usbootstrap_setup() {
 	/*
 		* Make theme available for translation.
@@ -199,6 +201,7 @@ function load_admin_style() {
 
 // Vite / Script Setup
 // THIS IS WHERE THEE SWITCH BETWEEN DEVELOPMENT AND AND PRODUCTION HAPPENS FOR VITE
+// We check to see if the Server Name ( URL is equivalent to the $local_site_url
 
 //GET HOSTNAME INFO
 $hostname = $_SERVER['SERVER_NAME'];
@@ -206,7 +209,7 @@ $hostname = $_SERVER['SERVER_NAME'];
 //VERIFY WHICH ENVIRONMENT THE APP IS RUNNING
 switch ($hostname) {
     // CHANGE THE CASE ARGUMENT HERE FOR YOUR OWN LOCAL SERVER NAME
-    case 'wp-vite-bootstrap':
+    case $local_site_url:
         define('WP_ENV', 'development');
         define('WP_DEBUG', true);
         break;;
