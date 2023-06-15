@@ -1,11 +1,12 @@
-console.log('here goes vite');
-
+// We import the 2 main stylesheets here for Vite
 import '../scss/us-bootstrap-styles.scss';
 import '../scss/custom-admin-styles.scss';
 
 // dependency imports
 
-// this is where any bootstrap requirements are imported
+// this is where any bootstrap requirements can be imported
+// if you want to use thier data attribute model
+// or you could import them into a calling function
 
 // these appear not to be in use, but are picked up by the correct components in bootstrap
 //import Collapse from 'bootstrap/js/dist/collapse';
@@ -30,16 +31,6 @@ import '../scss/custom-admin-styles.scss';
 
 // add function imports here
 
-// carousels
-
-
-// lightboxes
-
-
-
-// date pickers
-
-
 
 
 // utilities here - these are bespoke function that I use, and can be seen in operation in the dom
@@ -47,8 +38,6 @@ import '../scss/custom-admin-styles.scss';
 import canHover from './utility-scripts/canHover';
 import resizeActions from './utility-scripts/resizeActions';
 import prefersReducedMotion from './utility-scripts/prefersReducedMotion';
-
-
 
 
 // dom helpers - these are utilities, a bit like jquery, but without the need for it
@@ -72,6 +61,7 @@ const siteUiObj = {};
 siteUiObj.start = {
 
     'config': {
+        // if we need any configs for selectors etc, this can be passed in
         //visibilityClass : 'visuallyhidden'
     },
     // function references declared here based on imports
@@ -83,6 +73,7 @@ siteUiObj.start = {
     // declare function modules
 
     // function to kick things off, and allow for config object options if needed
+    // this is called on DOM ready
     init(settings) {
         // loop through any settings passed in, and overwrite the default config with those settings
         if (settings && typeof (settings) === 'object') {
@@ -105,19 +96,26 @@ siteUiObj.start = {
     },
 
     isResizing () {
+        // utility function to toggle a body class when the browser is resizing
+        // useful for controlling tranistions, and menu layout as layout flexes across breakpoints
         const bodyEl = $q1('body');
 
-        const assessAnimating = debounce( () => {
-            removeClass(bodyEl, 'is-animating')
+        window.addEventListener('resize', ()=> {
+            addClass(bodyEl, 'is-resizing');
+        });
+
+        const assessResizing = debounce( () => {
+            removeClass(bodyEl, 'is-resizing')
 
         }, 500);
 
-        window.addEventListener('resize', ()=> {
-            addClass(bodyEl, 'is-animating');
-        });
-
-        window.addEventListener('resize',   assessAnimating );
+        window.addEventListener('resize', assessResizing );
     },
+    deferredFunction () {
+        // example function only to demonstrate the use of the load event below
+        // take out as required
+        console.log('we are deferred to load event');
+    }
 };
 
 // dom ready
@@ -137,6 +135,6 @@ window.addEventListener('load', () => {
     // event listener can be used for triggering any required methods that are not critical on dom ready
     // helpful with 1st paint performance
 
-    //siteUiObj.start.
+    siteUiObj.start.deferredFunction();
 
 });

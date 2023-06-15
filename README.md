@@ -22,3 +22,8 @@ Run ' NPM Run Dev'
 
 To compile theme for production, run 'NPM Run Build'
 
+### Please see the JS / SCSS files in respective directories for details on includes, and utilities available
+
+// For Wordpress Templates, the structure is standard as per Underscores - the basics of a them are included only
+to keep the theme very un-opinionated in terms of mark-up / template parts
+

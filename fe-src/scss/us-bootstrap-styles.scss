@@ -4,6 +4,7 @@
 @import "scss-partials/abstracts/custom-mixins";
 
 @import "scss-partials/abstracts/bootstrap-variables-custom";
+@import "scss-partials/abstracts/bootstrap-variables-dark-custom";
 
 @import "bootstrap/scss/mixins";
 
@@ -11,6 +12,7 @@
 // abstracts first
 
 @import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/root";
 
@@ -32,19 +34,36 @@
 
 
 // UNUSED BOOTSTRAP PARTIALS - add as needed
-
+//@import "bootstrap/scss/tables";
 //@import "bootstrap/scss/dropdown";
 //@import "bootstrap/scss/accordion";
-//@import"~bootstrap/scss/forms";
-//@import "~bootstrap/scss/buttons";
+//@import "bootstrap/scss/forms";
+//@import "bootstrap/scss/buttons";
+//@import "bootstrap/scss/button-group";
 //@import "bootstrap/scss/nav";
+//@import "bootstrap/scss/navbar";
 //@import "bootstrap/scss/breadcrumb";
 //@import "bootstrap/scss/alert";
 //@import "bootstrap/scss/pagination";
 //@import "bootstrap/scss/card";
 //@import "bootstrap/scss/spinners";
+//@import "bootstrap/scss/pagination";
+//@import "bootstrap/scss/progress";
+//@import "bootstrap/scss/list-group";
+//@import "bootstrap/scss/close";
+//@import "bootstrap/scss/toasts";
+//@import "bootstrap/scss/badge";
+//@import "bootstrap/scss/modal";
+//@import "bootstrap/scss/tooltip";
+//@import "bootstrap/scss/placeholders";
 
 // END UNUSED PARTIALS
+
+// THESE ARE THE BOOTSTRAP UTILITY CLASSES AND API
+// Note that i've used a modified import of the utilities so that they can be added in / excluded on a 1 by 1 basis for payload size
+@import "bootstrap/scss/helpers";
+@import "scss-partials/modified-bootstrap-partials/utilities";
+@import "bootstrap/scss/utilities/api";
 
 
 // Custom Partials
@@ -52,10 +71,6 @@
 @import "scss-partials/base/typography";
 
 // bespoke utility compilation
-
-// the bootstrap grid partial pulls in most of the essential utility classes nowadays, this has minor includes
-@import "scss-partials/modified-bootstrap-partials/utilities";
-@import "bootstrap/scss/utilities/api";
 
 // components
 
