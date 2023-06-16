@@ -48,3 +48,10 @@ head {
     display: none;
   }
 }
+// Massive - adjust the min-width in media query as you wish
+@media screen and (min-width: 2000px) {
+  head {
+    font-size: 60px;
+    display: none;
+  }
+}

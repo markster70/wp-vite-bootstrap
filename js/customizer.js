@@ -1,4 +1,5 @@
 /* global wp, jQuery */
+// This JS comes with underscores theme = I don't use, but may, or may not be of use
 /**
  * File customizer.js.
  *

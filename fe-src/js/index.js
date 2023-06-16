@@ -5,31 +5,17 @@ import '../scss/custom-admin-styles.scss';
 // dependency imports
 
 // this is where any bootstrap requirements can be imported
-// if you want to use thier data attribute model
+// if you want to use their data attribute model
 // or you could import them into a calling function
+// see Bootstrap website for full detail
 
-// these appear not to be in use, but are picked up by the correct components in bootstrap
+
 //import Collapse from 'bootstrap/js/dist/collapse';
 //import Dropdown from 'bootstrap/js/dist/dropdown';
 //import Alert from 'bootstrap/js/dist/alert';
 //import Tab from "bootstrap/js/dist/tab";
-
-
-
-// gsap specific - this will be used for animation
-
-// for the gsap plugins, they need to be registered prior to use, so that is done on dom ready
-
-//import { gsap } from "gsap";
-//import { ExpoScaleEase, RoughEase, SlowMo } from "gsap/EasePack";
-//import { CSSRulePlugin } from "gsap/CSSRulePlugin";
-//import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-//import { ScrollTrigger } from "gsap/ScrollTrigger";
-//import { CSSPlugin } from "gsap/CSSPlugin";
-
 // function imports
 
-// add function imports here
 
 
 
@@ -120,9 +106,6 @@ siteUiObj.start = {
 
 // dom ready
 window.addEventListener('DOMContentLoaded', () => {
-
-    // gsap plugins need to be registered - do this on dom ready, prior to calling the start function in the obj literal
-    //gsap.registerPlugin( CSSPlugin, CSSRulePlugin, ScrollToPlugin, ScrollTrigger, ExpoScaleEase, RoughEase, SlowMo);
 
     // this calls the init function from the object literal on dom ready, and kicks everything off.
     siteUiObj.start.init();
