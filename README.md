@@ -13,7 +13,8 @@ There is a build for SCSS and any ES6 Based JavaScript that you may want to add 
 
 To Run :
 
-- Create a theme folder in your WP-content/themes directory
+- Install Wordpress locally ( Try MAMP or WAMP for local servers ) 
+- Open a terminal at WP-content/themes directory
 - Clone this repo into that folder
 - Update the $_local_site_url var in local_site_variable.php to your dev server url
 - Update the 'localDevPath' const in vite.config.js to your local dev path
