@@ -114,6 +114,24 @@ function debounce(func, wait, immediate) {
 
 // get current screenSize
 
+// USAGE GUIDE :
+
+// be sure to import the siteVars.js object into your module
+// also ensure that you have the _js-helpers.scss being includes as that takes the breakpoints from Bootstrap, and injects a 'font-size'
+// property to the head of the DOM, which we then read with currScreenSize func
+// you
+
+// then ...
+
+// const screenSizeTest = currScreenSize();
+// if(uiStateObj.smallScreenCategories.includes(screenSizeTest)) {
+ // do sonething for small screen
+//}
+
+// for an example of using with a debounced resize  ( to see if screen 'category' or size has changed
+// see resizeActions.js
+
+
 function currScreenSize() {
     var head = document.getElementsByTagName('head')[0];
     var computed;
@@ -147,8 +165,15 @@ function currScreenSize() {
     return screenDef;
 }
 
-function toggleAriaExpanded(element) {
-    const attributeKey = 'aria-expanded';
+// Simple function to allow aria-toggling
+// Usage Example
+// import function
+// then ...
+
+//const main = $q1('.site-main');
+//toggleAriaExpanded(main, 'aria-hidden');
+
+function toggleAriaExpanded(element, attributeKey = 'aria-expanded') {
 
     let currentAriaState = element.getAttribute(attributeKey);
 
@@ -171,6 +196,7 @@ function setCookie(cName, cValue, expDays) {
     document.cookie = cName + '=' + cValue + '; ' + expires + '; path=/';
 }
 
+// Fetch a cookie
 function getCookie(cName) {
     const name = cName + '=';
     const cDecoded = decodeURIComponent(document.cookie); //to be careful
