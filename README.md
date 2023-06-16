@@ -11,7 +11,7 @@ There is a build for SCSS and any ES6 Based JavaScript that you may want to add 
 
 #### Separate stylesheets are generated for admin styles, and for pure client side
 
-To Run :
+To Run Theme :
 
 - Install Wordpress locally ( Try MAMP or WAMP for local servers ) 
 - Open a terminal at wp-content/themes directory
