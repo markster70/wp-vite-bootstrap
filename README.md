@@ -4,8 +4,7 @@ A starter theme, based on underscores from Automattic, that utilises Bootstrap 5
 
 Vite is injected into the WP site for HMR and build facilities. 
 ### See vite-inc.php for details on how that is included
-### Also, update the $_local_site_url var in local_site_variable.php to your dev server url
-### And update the 'localDevPath' const in vite.config.js to your local dev path
+
 
 Source for FA assets is in the 'fe-src' directory - we compile out to dist
 There is a build for SCSS and any ES6 Based JavaScript that you may want to add to the theme
@@ -14,11 +13,13 @@ There is a build for SCSS and any ES6 Based JavaScript that you may want to add 
 
 To Run :
 
-Create a theme folder in your WP-content/themes directory
-Clone this repo into that folder
-
-#####Run 'NPM Install'
-#####Run ' NPM Run Dev'
+- Install Wordpress locally ( Try MAMP or WAMP for local servers ) 
+- Open a terminal at wp-content/themes directory
+- Clone this repo into that folder
+- Update the $_local_site_url var in local_site_variable.php to your dev server url
+- Update the 'localDevPath' const in vite.config.js to your local dev path
+- Run 'NPM Install'
+- Run ' NPM Run Dev'
 
 To compile theme for production, run 'NPM Run Build'
 
