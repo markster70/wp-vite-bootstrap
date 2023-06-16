@@ -18,8 +18,9 @@ To Run :
 
 Create a theme folder in your WP-content/themes directory
 Clone this repo into that folder
-Run 'NPM Install'
-Run ' NPM Run Dev'
+
+#####Run 'NPM Install'
+#####Run ' NPM Run Dev'
 
 To compile theme for production, run 'NPM Run Build'
 
