@@ -166,32 +166,34 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-add_filter( 'allowed_block_types_all', 'misha_allowed_block_types', 25, 2 );
-
-function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
-
-    return array(
-        'core/image',
-        'core/paragraph',
-        'core/heading',
-        'core/list',
-        'core/list-item',
-        'core/gallery',
-        'core/quote',
-        'core/html',
-        'core/buttons',
-        'core/button',
-        'core/columns',
-        'core/column',
-        'core/file',
-        'core/media-text',
-        'core/shortcode',
-        'core/separator',
-        'core/freeform',
-        'genesis-custom-blocks/social-block',
-        'core/tag-cloud'
-    );
-}
+// Example code here for restricting blocks in the block editor
+// I find this useful so that we dont overpower CMS users with the 'kitchen sink'
+//add_filter( 'allowed_block_types_all', 'misha_allowed_block_types', 25, 2 );
+//
+//function misha_allowed_block_types( $allowed_blocks, $editor_context ) {
+//
+//    return array(
+//        'core/image',
+//        'core/paragraph',
+//        'core/heading',
+//        'core/list',
+//        'core/list-item',
+//        'core/gallery',
+//        'core/quote',
+//        'core/html',
+//        'core/buttons',
+//        'core/button',
+//        'core/columns',
+//        'core/column',
+//        'core/file',
+//        'core/media-text',
+//        'core/shortcode',
+//        'core/separator',
+//        'core/freeform',
+//        'genesis-custom-blocks/social-block',
+//        'core/tag-cloud'
+//    );
+//}
 
 add_action( 'admin_enqueue_scripts', 'load_admin_style' );
 
